@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 
+
 # Receives player's name
 player_name = input("What's your name?:")
 print("Hello " + player_name)
