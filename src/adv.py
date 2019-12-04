@@ -3,8 +3,7 @@ from player import Player
 
 
 # Receives player's name
-player_name = input("What's your name?:")
-print("Hello " + player_name)
+player_name = input("What's your name?: ")
 
 # Declare all the rooms
 
@@ -44,6 +43,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(player_name, "outside")
+player.states_location()
 
 # Write a loop that:
 #
