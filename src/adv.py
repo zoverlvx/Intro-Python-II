@@ -43,9 +43,23 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(player_name, "outside")
-player.states_location()
-
+player = Player(player_name, room["outside"])
+"""
+return type of player
+{
+    name: String,
+    current_location: {
+        name_of_room: Room{
+            name: String,
+            description: String,
+            n_to: Room,
+            s_to: Room,
+            w_to: Room,
+            e_to: Room
+        }
+    }
+}
+"""
 # Write a loop that:
 #
 # * Prints the current room name
@@ -56,3 +70,13 @@ player.states_location()
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    player.states_location()
+    direction = input("Type direction you'd like to go: ").lower()
+    if direction == "n":
+        if player.current_room.n_to != None:
+            player.current_room = player.current_room.n_to
+            player.states_location()
+        else: 
+            print("Print you can't go that way.")
+            continue
