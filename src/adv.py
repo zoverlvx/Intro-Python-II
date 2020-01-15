@@ -6,19 +6,18 @@ from player import Player
 player_name = input("What's your name?: ")
 
 # Declare all the rooms
-
 room = {
-    'outside':  Room("Outside Cave Entrance",
+    'outside': Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow': Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
@@ -44,21 +43,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(player_name, room["outside"])
-"""
-return type of player
-{
-    name: String,
-    current_location: {
-        name_of_room: Room{
-            name: String,
-            description: String,
-            n_to: Room,
-            s_to: Room,
-            w_to: Room,
-            e_to: Room
-        }
-    }
-}
+
 """
 # Write a loop that:
 #
@@ -70,8 +55,25 @@ return type of player
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+"""
+
 while True:
-    player.states_location()
+    # prints __str__ of player
+    print(player)
+
+    allowed_directions = ["n", "s", "w", "e"]
+
+    move=input("Which direction would you like to go? (N, S, W, E): ").lower()
+    
+    if move in allowed_directions:
+        if move == "n" and player.current_room.n_to is not None:
+            player.current_room = player.current_room.n_to
+            continue
+    break
+
+
+"""
+while True:
     direction = input("Type direction you'd like to go: ").lower()
     if direction == "n":
         if player.current_room.n_to != None:
@@ -80,3 +82,4 @@ while True:
         else: 
             print("Print you can't go that way.")
             continue
+"""
