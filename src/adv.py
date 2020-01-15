@@ -63,23 +63,28 @@ while True:
 
     allowed_directions = ["n", "s", "w", "e"]
 
-    move=input("Which direction would you like to go? (N, S, W, E): ").lower()
+    move=input("Which direction would you like to go? (N, S, W, E, Q for quit): ").lower()
+
+    if move == "q":
+        print("Thanks for playing")
+        break
     
     if move in allowed_directions:
         if move == "n" and player.current_room.n_to is not None:
             player.current_room = player.current_room.n_to
             continue
-    break
-
-
-"""
-while True:
-    direction = input("Type direction you'd like to go: ").lower()
-    if direction == "n":
-        if player.current_room.n_to != None:
-            player.current_room = player.current_room.n_to
-            player.states_location()
-        else: 
-            print("Print you can't go that way.")
+        elif move == "s" and player.current_room.s_to is not None:
+            player.current_room = player.current_room.s_to
             continue
-"""
+        elif move == "w" and player.current_room.w_to is not None:
+            player.current_room = player.current_room.w_to
+            continue
+        elif move == "e" and player.current_room.e_to is not None:
+            player.current_room = player.current_room.e_to
+            continue
+        else:
+            print("There doesn't appear to be a room there. Try again, please.")
+            continue
+    else:
+        print("Incorrect direction. Please, try again.")
+        continue
