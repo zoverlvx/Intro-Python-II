@@ -61,25 +61,38 @@ while True:
     # prints __str__ of player
     print(player)
 
-    allowed_directions = ["n", "s", "w", "e"]
+    possible_directions = ["n", "s", "w", "e"]
 
-    move=input("Which direction would you like to go? (N, S, W, E, Q for quit): ").lower()
+    direction=input("Which direction would you like to go? (N, S, W, E, or Q for quit): ").lower()
 
-    if move == "q":
+    if direction == "q":
         print("Thanks for playing")
         break
     
+    # if direction is possible
+    if direction in possible_directions:
+        # if the room has an adjoining room of that direction
+        if hasattr(player.current_room, F"{direction}_to"):
+            # player moves to room indicated by direction taken
+            player.current_room = getattr(player.current_room, F"{direction}_to")
+        else:
+            print("There doesn't appear to be a room there. Try again, please.\n")
+    else:
+        print("Incorrect direction. Please, try again.\n")
+
+""" 
+    #OLD CODE! :)
     if move in allowed_directions:
-        if move == "n" and player.current_room.n_to is not None:
-            player.current_room = player.current_room.n_to
+        if move == "n" and hasattr(player.current_room, "n_to"):
+            player.current_room = getattr(player.current_room, "n_to")
             continue
-        elif move == "s" and player.current_room.s_to is not None:
+        elif move == "s" and hasattr(player.current_room, "s_to"):
             player.current_room = player.current_room.s_to
             continue
-        elif move == "w" and player.current_room.w_to is not None:
+        elif move == "w" and hasattr(player.current_room, "w_to"):
             player.current_room = player.current_room.w_to
             continue
-        elif move == "e" and player.current_room.e_to is not None:
+        elif move == "e" and hasattr(player.current_room, "e_to"):
             player.current_room = player.current_room.e_to
             continue
         else:
@@ -88,3 +101,4 @@ while True:
     else:
         print("Incorrect direction. Please, try again.")
         continue
+"""
