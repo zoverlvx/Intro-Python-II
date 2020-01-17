@@ -62,7 +62,18 @@ player = Player(player_name, room["outside"])
 while True:
     # prints __str__ of player
     print(player)
+    # shows quantity of items in current room
     print(player.current_room.show_items())
+
+    # if player has items in their inventory
+    if len(player.items) >= 1:
+        print(player.show_inventory())
+        choice=input("Drop this item: ")
+        if choice is not "n":
+            print(player.drop_item(choice))
+        elif choice is "n":
+            print(F"{player.name} continues on.")
+
     # if there are items in the room
     if len(player.current_room.items) >= 1:
         # displays item choices
@@ -72,7 +83,7 @@ while True:
             print(player.get_item(choice))
         elif choice is "n":
             print("No items picked up.")
-
+    
     possible_directions = ["n", "s", "w", "e"]
 
     direction=input("Which direction would you like to go? (N, S, W, E, or Q for quit): ").lower()
