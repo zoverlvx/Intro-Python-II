@@ -7,8 +7,10 @@ class Room:
         self.name = name
         self.description = description
         self.items = items
+    
     def show_items(self):
         return F"{self.name} has {len(self.items)} items in it."
+    
     def display_item_choices(self):
         if len(self.items) >= 1:
             i = 1
