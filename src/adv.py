@@ -63,6 +63,15 @@ while True:
     # prints __str__ of player
     print(player)
     print(player.current_room.show_items())
+    # if there are items in the room
+    if len(player.current_room.items) >= 1:
+        # displays item choices
+        print(player.current_room.display_item_choices())
+        choice=input("Make your choice: ")
+        if choice is not "n":
+            print(player.get_item(choice))
+        elif choice is "n":
+            print("No items picked up.")
 
     possible_directions = ["n", "s", "w", "e"]
 
@@ -82,26 +91,3 @@ while True:
             print("There doesn't appear to be a room there. Try again, please.\n")
     else:
         print("Incorrect direction. Please, try again.\n")
-
-""" 
-    #OLD CODE! :)
-    if move in allowed_directions:
-        if move == "n" and hasattr(player.current_room, "n_to"):
-            player.current_room = getattr(player.current_room, "n_to")
-            continue
-        elif move == "s" and hasattr(player.current_room, "s_to"):
-            player.current_room = player.current_room.s_to
-            continue
-        elif move == "w" and hasattr(player.current_room, "w_to"):
-            player.current_room = player.current_room.w_to
-            continue
-        elif move == "e" and hasattr(player.current_room, "e_to"):
-            player.current_room = player.current_room.e_to
-            continue
-        else:
-            print("There doesn't appear to be a room there. Try again, please.")
-            continue
-    else:
-        print("Incorrect direction. Please, try again.")
-        continue
-"""
